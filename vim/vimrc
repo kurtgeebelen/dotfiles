@@ -21,6 +21,7 @@ set listchars=tab:▸\ ,eol:¬
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 nnoremap <leader>m :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+let mapleader=","
 
 " Better autocompletion when switching buffers
 set wildchar=<Tab> 
