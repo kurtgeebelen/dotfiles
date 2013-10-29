@@ -1,0 +1,165 @@
+set nocompatible    " use vim defaults
+set backspace=2
+
+"call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
+
+"set ls=2            " allways show status line
+set showcmd         " display incomplete commands
+set number          " show line numbers
+set noignorecase   " don't ignore case
+set title           " show title in console title bar
+set ttyfast         " smoother changes
+set nostartofline   " don't jump to first character when paging
+set hidden
+set scrolloff=5     " keep 3 lines when scrolling
+set diffopt=filler,vertical,iwhite
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+nnoremap <leader>m :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+
+" Better autocompletion when switching buffers
+set wildchar=<Tab> 
+set wildmenu 
+set wildmode=full
+set wildignore=*.o
+set suffixes-=.log
+set suffixes+=,,
+
+" disable the command for entering Ex mode so I don't hit it accidentally
+map Q <ESC>
+
+set tabstop=4       " numbers of spaces of tab character
+set shiftwidth=4
+set softtabstop=4
+au FileType python set expandtab      " tabs are converted to spaces, use only when required
+
+"set nohlsearch        " highlight searches
+"set hlsearch
+"set incsearch       " do incremental searching
+"set ignorecase      " ignore case when searching
+
+set noautoindent
+set nosmartindent
+set nocindent  
+
+"set nobackup        " do not keep a backup file
+"set autowrite      " auto saves changes when quitting and swiching buffer
+set nosm             " show matching braces, somewhat annoying...
+"set nowrap         " don't wrap lines
+
+syntax on           " syntax highlighing
+
+"set autochdir
+
+au FileType helpfile set nonumber      " no line numbers when viewing help
+au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
+au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+
+au FileType cpp,c,cu,asy set autoindent
+au FileType cpp,c,cu,asy set smartindent
+au FileType cpp,c,cu,asy set cindent
+
+au BufNewFile,BufRead Makeppfile* set ft=make
+au BufNewFile,BufRead *.asy set ft=asy
+au BufNewFile,BufRead *.cu set ft=cpp
+au BufNewFile,BufRead *.launch set ft=xml
+"au BufNewFile,BufRead *.cu set ft=cu
+"au BufNewFile,BufRead *.cumako set ft=cu
+
+let loaded_matchparen = 1 " Turn off distracting temporary highlighting of matching parantheses.
+
+set cursorline
+"set cursorcolumn
+au WinLeave * set nocursorline 
+au WinEnter * set cursorline 
+au InsertEnter * set nocursorline 
+au InsertLeave * set cursorline 
+
+if has("gui_running")
+	colorscheme zenburn
+	"set t_Co=256
+	set guioptions-=m " Turn off menubar
+	set guioptions-=T " Turn off toolbar
+	"set guioptions-=r " Turn off scroll-bars
+	set guicursor+=a:blinkon0 "Turn off cursor blink
+	set mousefocus
+	"set guifont=Monospace\ 10 "almost identical to...
+	set guifont=DejaVu\ Sans\ Mono\ 10
+	"set guifont=Liberation\ Mono\ 11
+	"set guifont=monofur\ 13 " Weird
+	"set guifont=Inconsolata\ Medium\ 10 " looks bad with antialiasing.
+
+	" Stuff for changing the font size quickly
+	let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+	let s:minfontsize = 6
+	let s:maxfontsize = 16
+	function! AdjustFontSize(amount)
+		if has("gui_gtk2") && has("gui_running")
+			let fontname = substitute(&guifont, s:pattern, '\1', '')
+			let cursize = substitute(&guifont, s:pattern, '\2', '')
+			let newsize = cursize + a:amount
+			if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
+				let newfont = fontname . newsize
+				let &guifont = newfont
+			endif
+		else
+			echoerr "You need to run the GTK2 version of Vim to use this function."
+		endif
+	endfunction
+	function! LargerFont()
+		call AdjustFontSize(1)
+	endfunction
+	command! LargerFont call LargerFont()
+	function! SmallerFont()
+		call AdjustFontSize(-1)
+	endfunction
+	command! SmallerFont call SmallerFont()
+	nnoremap - :LargerFont<CR>
+	nnoremap _ :SmallerFont<CR>
+endif
+
+" Bubble word to left or right
+nnoremap <silent> <C-h> "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
+nnoremap <silent> <C-l> "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>
+nnoremap <silent> <C-H> vaWdBPB
+nnoremap <silent> <C-L> vaWdWPB
+" Bubble single line vertically, requires the unimpaired plugin
+nmap <C-Up> [e
+nmap <C-Down> ]e
+nmap <C-k> [e
+nmap <C-j> ]e
+" Bubble multiple lines vertically
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+vmap <C-k> [egv
+vmap <C-j> ]egv
+" Shortcuts for deleting lines above and below cursor.
+" Inspired by [<space> mappings for inserting empty lines.
+nmap [d kdd
+nmap ]d jddk
+
+map <PageUp> <C-y>
+map <PageDown> <C-e>
+
+abbr hte the
+abbr teh the
+abbr si is
+nmap <F3> :wall <cr> :make <cr>
+nmap <F5> :wall <cr> :make <cr>
+
+let NERDTreeIgnore=['\.vim$', '\~$', '\.o$', '\.dump$']
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeMinimalUI=1
+
+command! Cd cd %:h
+command! Lc lcd %:h
+command! CD cd %:h
+command! LC lcd %:h
+
+
+" let NERDTreeIgnore = ['\.pyc$']
