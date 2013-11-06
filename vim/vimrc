@@ -38,6 +38,7 @@ set tabstop=4       " numbers of spaces of tab character
 set shiftwidth=4
 set softtabstop=4
 au FileType python set expandtab      " tabs are converted to spaces, use only when required
+au FileType tex set expandtab      " tabs are converted to spaces, use only when required
 
 "set nohlsearch        " highlight searches
 "set hlsearch
@@ -72,7 +73,7 @@ au BufNewFile,BufRead *.launch set ft=xml
 "au BufNewFile,BufRead *.cu set ft=cu
 "au BufNewFile,BufRead *.cumako set ft=cu
 
-let loaded_matchparen = 1 " Turn off distracting temporary highlighting of matching parantheses.
+"let loaded_matchparen = 1 " Turn off distracting temporary highlighting of matching parantheses.
 
 set cursorline
 "set cursorcolumn
