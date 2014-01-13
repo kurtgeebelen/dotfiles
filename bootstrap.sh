@@ -1,5 +1,5 @@
 #!/bin/bash
-echo ". ~/dotfiles/aliases" >> ~/.bashrc
+echo "export EDITOR=VIM" >> ~/.bashrc
 ln -sf ~/dotfiles/inputrc            ~/.inputrc
 ln -sf ~/dotfiles/gitconfig          ~/.gitconfig
 ln -sf ~/dotfiles/vim/vimrc          ~/.vimrc
