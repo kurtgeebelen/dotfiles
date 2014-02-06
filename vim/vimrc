@@ -191,3 +191,5 @@ au FileType tex set spell spelllang=en_us "Turn on spell check
 " Save and load folds
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
+
+set foldmethod=marker
