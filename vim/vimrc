@@ -189,6 +189,7 @@ let g:Tex_DefaultTargetFormat='pdf'
 let g:Imap_UsePlaceHolders = 0
 
 au FileType tex set spell spelllang=en_us "Turn on spell check
+au FileType tex set tw=70 " tabs are converted to spaces, use only when required
 
 " Save and load folds
 au BufWinLeave * mkview
