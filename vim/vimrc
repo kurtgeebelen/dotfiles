@@ -190,10 +190,10 @@ let g:Imap_UsePlaceHolders = 0
 
 au FileType tex set spell spelllang=en_us "Turn on spell check
 au FileType tex set tw=80 " tabs are converted to spaces, use only when required
+au FileType tex set nojoinspaces " only put one space after period when starting new line
 
 " Save and load folds
-set viewoptions=folds,cursor
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
-
-set foldmethod=marker
+set viewoptions=folds,cursor " We only want to save the status of the folds and the cursor position when exiting a file, not the viewoptions.
+au BufWinLeave *.* mkview " Save the view when leaving vim
+au BufWinEnter *.* silent loadview " Load the view when starting vim
+set foldmethod=marker " Use a marker, the standard {{{ or }}} when creating folds, such that they can be used on all computers
