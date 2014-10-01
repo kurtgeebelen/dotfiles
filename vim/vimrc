@@ -150,6 +150,7 @@ map <PageDown> <C-e>
 
 abbr hte the
 abbr teh the
+abbr tehter tether
 abbr si is
 nmap <F3> :wall <cr> :make <cr>
 nmap <F5> :wall <cr> :make <cr>
@@ -188,7 +189,7 @@ let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Imap_UsePlaceHolders = 0
 
-au FileType tex set spell spelllang=en_us "Turn on spell check
+au FileType tex set spell spelllang=en_gb "Turn on spell check
 au FileType tex set tw=80 " tabs are converted to spaces, use only when required
 au FileType tex set nojoinspaces " only put one space after period when starting new line
 
@@ -197,3 +198,9 @@ set viewoptions=folds,cursor " We only want to save the status of the folds and 
 au BufWinLeave *.* mkview " Save the view when leaving vim
 au BufWinEnter *.* silent loadview " Load the view when starting vim
 set foldmethod=marker " Use a marker, the standard {{{ or }}} when creating folds, such that they can be used on all computers
+
+iabbrev teh the
+iabbrev hte the
+iabbrev teh the
+iabbrev tehter tether
+iabbrev si is

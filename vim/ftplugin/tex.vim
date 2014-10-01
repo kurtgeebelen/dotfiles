@@ -5,3 +5,8 @@ set sw=2
 " type in \ref{fig: and press <C-n> you will automatically cycle through
 " all the figure labels. Very useful!
 set iskeyword+=:
+call IMAP('teh ', 'the ', '')
+call IMAP('hte ', 'the ', '')
+call IMAP('teh ', 'the ', '')
+call IMAP('tehter ', 'tether ', '')
+call IMAP('si ', 'is ', '')
