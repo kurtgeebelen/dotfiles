@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "export EDITOR=VIM" >> ~/.bashrc
+echo "export EDITOR=vim" >> ~/.bashrc
 ln -sf ~/dotfiles/inputrc            ~/.inputrc
 ln -sf ~/dotfiles/gitconfig          ~/.gitconfig
 ln -sf ~/dotfiles/vim/vimrc          ~/.vimrc
