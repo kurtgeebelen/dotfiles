@@ -10,4 +10,5 @@ ln -sf ~/dotfiles/vim                ~/.vim
 #ln -sf ~/dotfiles/Xresources         ~/.Xresources
 #ln -sf ~/dotfiles/octave/octaverc    ~/.octaverc
 #ln -sf ~/dotfiles/tmux.conf          ~/.tmux.conf
-
+sudo apt-get update
+sudo apt-get install -y vim compiz-plugins compizconfig-settings-manager git gnome-panel openssh-server
