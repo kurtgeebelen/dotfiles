@@ -24,3 +24,5 @@
 	keepBackup = false
 [blame]
 	date = relative
+[push]
+	default = matching
