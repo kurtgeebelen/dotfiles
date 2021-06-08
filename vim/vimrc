@@ -39,7 +39,6 @@ set shiftwidth=4
 set softtabstop=4
 au FileType python set expandtab      " tabs are converted to spaces, use only when required
 au FileType tex set expandtab      " tabs are converted to spaces, use only when required
-autocmd Filetype cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 "set nohlsearch        " highlight searches
 "set hlsearch
