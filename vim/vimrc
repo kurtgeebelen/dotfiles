@@ -205,3 +205,7 @@ iabbrev hte the
 iabbrev teh the
 iabbrev tehter tether
 iabbrev si is
+
+"Plugin rainbow
+au FileType c,cpp,objc,objcpp call rainbow#load()
+
